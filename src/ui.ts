@@ -12,13 +12,41 @@ import type { Ratt } from "./typer";
 //      <p class="pris">35 kr</p>
 //    </article>
 export function skapaRattKort(ratt: Ratt): HTMLElement {
-  // TODO
+  const kort = document.createElement("article");
+  kort.dataset.id = String(ratt.id);
+
+  const bild = document.createElement("img");
+  bild.src = ratt.bild ?? "";
+  bild.alt = `Illustration av ${ratt.namn}`;
+
+  const rubrik = document.createElement("h3");
+  rubrik.textContent = ratt.namn;
+
+  const p = document.createElement("p");
+  p.textContent = ratt.beskrivning?? "";
+
+  const pris = document.createElement("p");
+  pris.className = "pris";
+  pris.textContent = formateraPris(ratt.pris);
+  kort.append(bild, rubrik, p, pris);
+  return kort;
 }
 
 // 2. Töm containern och lägg in ett kort per rätt.
 //    Är listan tom: visa <p class="tom">Inga rätter hittades.</p> istället.
 export function visaMeny(container: HTMLElement, ratter: Ratt[]): void {
-  // TODO
+  container.replaceChildren();
+  if (ratter.length === 0) {
+    const tom = document.createElement("p");
+    tom.className = "tom";
+    tom.textContent = "Inga rätter hittades.";
+    container.append(tom);
+    return;
+  }
+
+  for (const ratt of ratter) {
+    container.append(skapaRattKort(ratt));
+  }
 }
 
 // 3. Sätt rubrikens text: "Meny (8 rätter)". Ett enda: "Meny (1 rätt)".
