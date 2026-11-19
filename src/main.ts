@@ -7,14 +7,36 @@ import { billigast } from "./meny";
 
 // DEL 1: utforska DOM:en ----------------------------------------------
 // 1. Hämta h1 med document.querySelector("h1") och skriv ut dess textContent.
+//const rubrik = document.querySelector("h1");
+console.log(document.querySelector("h1").textContent);
+
 // 2. Ändra texten i #hero-rubrik till "Välkommen in!"
+document.querySelector("#hero-rubrik").textContent = "Välkommen in!";
+
 // 3. Hämta alla länkar i menyn med document.querySelectorAll("nav a").
 //    Loopa med for...of och skriv ut varje länks href och text.
+const lankar = document.querySelectorAll("nav a");
+
+for (const lank of lankar) { console.log(lank.href, lank.textContent); }
+
+console.log(lankar);
 // 4. Skapa ett nytt p-element (document.createElement), ge det texten
 //    "Dagens tips: prova en kardemummabulle." och lägg det sist i #hero med append.
+const p = document.createElement("p");
+p.textContent = "Dagens tips: prova en kardemummabulle.";
+document.querySelector("#hero")?.append(p);
+
 // 5. Lägg klassen "dagens" på #hero med classList.add. Ta bort den med classList.remove.
+const hero = document.querySelector("#hero");
+
+hero.classList.add("dagens");
+hero?.classList.remove("dagens");
+hero?.classList.toggle("dagens");
+hero?.classList.toggle("dagens");
+hero?.classList.toggle("dagens");
 // 6. Säkerhetsförsök: sätt p.innerHTML = '<img src="x" onerror="console.log(\'Attack!\')">'
 //    Vad händer i Console? Byt sedan till p.textContent med samma text. Vad händer nu?
+p.textContent = '<img src="x" onerror="console.log(\'Attack!\')">'
 // TODO
 
 
