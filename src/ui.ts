@@ -23,7 +23,7 @@ export function skapaRattKort(ratt: Ratt): HTMLElement {
   rubrik.textContent = ratt.namn;
 
   const p = document.createElement("p");
-  p.textContent = ratt.beskrivning?? "";
+  p.textContent = ratt.beskrivning ?? "";
 
   const pris = document.createElement("p");
   pris.className = "pris";
@@ -41,7 +41,6 @@ export function visaMeny(container: HTMLElement, ratter: Ratt[]): void {
     tom.className = "tom";
     tom.textContent = "Inga rätter hittades.";
     container.append(tom);
-    return;
   }
 
   for (const ratt of ratter) {
@@ -51,11 +50,16 @@ export function visaMeny(container: HTMLElement, ratter: Ratt[]): void {
 
 // 3. Sätt rubrikens text: "Meny (8 rätter)". Ett enda: "Meny (1 rätt)".
 export function uppdateraRubrik(element: HTMLElement, antal: number): void {
-  // TODO
+  const rattText: string = antal === 1 ? "rätt" : "rätter";
+  element.textContent = `Meny (${antal} ${rattText})`;
+  //console.log(`Meny (${antal} ${rattText})`);
 }
 
 // 4. Markera EN rätt som dagens rätt: klassen "dagens" ska finnas på kortet med rätt
 //    data-id, och inte på något annat kort. Anropas igen = markeringen flyttas.
 export function markeraDagensRatt(container: HTMLElement, id: number): void {
-  // TODO
-}
+  container.querySelectorAll(".dagens").forEach((kort) => kort.classList.remove("dagens"));
+  const kort: HTMLElement | null = container.querySelector(`[data-id="${id}"]`);
+  kort?.classList.add("dagens");
+} // Jag klickade på fix och nästan all kod genererades. Hade const kort: och 
+// kort.classlist.add("dagens"); 
