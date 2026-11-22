@@ -39,7 +39,7 @@ export function visaMeny(container: HTMLElement, ratter: Ratt[]): void {
   if (ratter.length === 0) {
     const tom = document.createElement("p");
     tom.className = "tom";
-    tom.textContent = "Inga rätter hittades.";
+    tom.textContent = "Tyvärr finns det inga rätter på menyn just nu.";
     container.append(tom);
   }
 
@@ -57,9 +57,12 @@ export function uppdateraRubrik(element: HTMLElement, antal: number): void {
 
 // 4. Markera EN rätt som dagens rätt: klassen "dagens" ska finnas på kortet med rätt
 //    data-id, och inte på något annat kort. Anropas igen = markeringen flyttas.
+
 export function markeraDagensRatt(container: HTMLElement, id: number): void {
-  container.querySelectorAll(".dagens").forEach((kort) => kort.classList.remove("dagens"));
-  const kort: HTMLElement | null = container.querySelector(`[data-id="${id}"]`);
-  kort?.classList.add("dagens");
-} // Jag klickade på fix och nästan all kod genererades. Hade const kort: och 
-// kort.classlist.add("dagens"); 
+  container.querySelectorAll<HTMLElement>("[data-id]")
+    .forEach(kort => {
+      const rattId = Number(kort.dataset.id); //Hämta id från kortet
+      kort.classList.toggle("dagens", rattId === id); 
+    });
+}
+ 
