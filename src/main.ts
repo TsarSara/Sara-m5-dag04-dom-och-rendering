@@ -68,3 +68,4 @@ if (menyLista) {
 }
 // TODO
 
+//visaMeny(menyLista!, []); //Inga rätter hittades.
