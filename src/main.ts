@@ -42,7 +42,8 @@ hero?.classList.toggle("dagens");
 // 6. Säkerhetsförsök: sätt p.innerHTML = '<img src="x" onerror="console.log(\'Attack!\')">'
 //    Vad händer i Console? Byt sedan till p.textContent med samma text. Vad händer nu?
 const p = document.createElement("p")
-//p.innerHTML = '<img src="x" onerror="console.log(\'Attack!\')">'
+//p.innerHTML = '<img src="x" onerror="console.log(\'Attack!\')">' 
+//Använder man innerHTML behandlas det som skrivs som HTLM-kod, vilket kan leda till att oönskad och farlig kod körs.
 p.textContent = '<img src="x" onerror="console.log(\'Attack!\')">'
 // TODO
 document.querySelector("#hero")?.append(p);
