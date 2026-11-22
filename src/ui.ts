@@ -59,8 +59,7 @@ export function uppdateraRubrik(element: HTMLElement, antal: number): void {
 //    data-id, och inte på något annat kort. Anropas igen = markeringen flyttas.
 
 export function markeraDagensRatt(container: HTMLElement, id: number): void {
-  container.querySelectorAll<HTMLElement>("[data-id]")
-    .forEach(kort => {
+  container.querySelectorAll<HTMLElement>("[data-id]").forEach(kort => {
       const rattId = Number(kort.dataset.id); //Hämta id från kortet
       kort.classList.toggle("dagens", rattId === id); 
     });
