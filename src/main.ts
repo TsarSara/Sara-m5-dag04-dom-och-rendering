@@ -49,7 +49,22 @@ document.querySelector("#hero")?.append(p);
 
 // DEL 2: koppla ihop med funktionerna i ui.js ----------------------------
 // 7. Hämta #meny-lista och #meny-rubrik.
+const menyLista = document.querySelector<HTMLElement>("#meny-lista");
+const menyRubrik = document.querySelector<HTMLElement>("#meny-rubrik");
 // 8. Anropa visaMeny med menyn, och uppdateraRubrik med antalet rätter.
+if (menyLista && menyRubrik) {
+  visaMeny(menyLista, meny);
+  uppdateraRubrik(menyRubrik, meny.length);
+}
 // 9. Dagens rätt = den billigaste lunchen. Använd filter och billigast (från meny.js)
 //    och markeraDagensRatt.
+if (menyLista) {
+  const luncher = meny.filter(ratt => ratt.kategori === "lunch");
+  const dagensRatt = billigast(luncher);
+
+  if (dagensRatt) {
+    markeraDagensRatt(menyLista, dagensRatt.id);
+  }
+}
 // TODO
+
